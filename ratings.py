@@ -1,6 +1,7 @@
 def print_dictionary(current_ratings):
-	for restaurant, rating in current_ratings.items():
-		print(restaurant + " is rated at a " + rating + ".")
+	current_ratings = sorted(current_ratings.items())
+	for restaurant, rating in current_ratings:
+		print(restaurant + " is rated at a " + str(rating) + ".")
 
 
 def clean_ratings(filename):
@@ -26,10 +27,8 @@ def get_new_rating(original_ratings):
 		if type(new_score) == int and new_score >= 1 and new_score <= 5:
 
 			original_ratings[new_restaurant] = new_score
-			new_ratings = sorted(original_ratings.items())
+			return original_ratings
 
-			for restaurant, rating in new_ratings:
-				print(restaurant + " is rated at a " + str(rating) + ".")
 		else:
 			print("Please enter a valid rating. ")
 			get_new_rating(ratings)
@@ -66,6 +65,13 @@ def restaurant_ratings(filename):
 
 		if user_input.upper() == "S":
 			print_dictionary(ratings)
+		elif user_input.upper() == "A":
+			get_new_rating(ratings)
+		elif user_input.upper()== "Q":
+			print("Goodbye!")
+			break
+		else:
+			print("Please enter a valid command")
 
 
 restaurant_ratings("scores.txt")
