@@ -58,8 +58,8 @@ def get_new_rating(original_ratings):
 # 		print("Please enter a valid rating. ")
 # 		get_new_rating(ratings)
 
-def restaurant_ratings():
-	ratings = clean_ratings("scores.txt")
+def restaurant_ratings(filename):
+	ratings = clean_ratings(filename)
 	while True:
 
 		user_input = input("What would you like to do? (S)ee all ratings, (A)dd new restaurant, or (Q)uit. ")
@@ -68,4 +68,4 @@ def restaurant_ratings():
 			print_dictionary(ratings)
 
 
-restaurant_ratings()
+restaurant_ratings("scores.txt")
