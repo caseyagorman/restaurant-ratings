@@ -1,7 +1,9 @@
-def print_dictionary():
-	pass
+def print_dictionary(current_ratings):
+	for restaurant, rating in current_ratings.items():
+		print(restaurant + " is rated at a " + rating + ".")
 
-def rating(filename):
+
+def clean_ratings(filename):
 	my_file = open(filename)
 	ratings = {}
 	for line in my_file:
@@ -9,8 +11,8 @@ def rating(filename):
 		restaurant, rating = line.split(":")
 		ratings[restaurant] = rating
 	ratings = sorted(ratings.items())
-	for restaurant, rating in ratings:
-		print(restaurant + " is rated at a " + rating + ".")
+	# for restaurant, rating in ratings:
+	# 	print(restaurant + " is rated at a " + rating + ".")
 
 	return dict(ratings)
 
@@ -56,6 +58,14 @@ def get_new_rating(original_ratings):
 # 		print("Please enter a valid rating. ")
 # 		get_new_rating(ratings)
 
+def restaurant_ratings():
+	ratings = clean_ratings("scores.txt")
+	while True:
 
-ratings = rating("scores.txt")
-get_new_rating(ratings)
+		user_input = input("What would you like to do? (S)ee all ratings, (A)dd new restaurant, or (Q)uit. ")
+
+		if user_input.upper() == "S":
+			print_dictionary(ratings)
+
+
+restaurant_ratings()
